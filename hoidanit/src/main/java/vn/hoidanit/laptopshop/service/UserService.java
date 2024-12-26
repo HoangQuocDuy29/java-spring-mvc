@@ -36,4 +36,8 @@ public class UserService {
     public User getUserById(long id) {
        return this.userRepository.findById(id);
     }
+    //funtion xoá người dùng từ bên Userrepository
+    public void deleteAUser(long id) {
+        this.userRepository.deleteById(id);
+     }
 }
