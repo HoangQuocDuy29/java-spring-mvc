@@ -1,14 +1,21 @@
 package vn.hoidanit.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo Id.Nhưng nếu OnetoOne thì không cần,thay vào đó dùng @MapId
+
+    private long id;
 
     private String name;
     private double price;
@@ -19,6 +26,13 @@ public class Product {
     private long sold;
     private String factory;
     private String target;
+
+
+    //----------------- Product->OrderDetail (order_id)
+    // @OneToMany(mappedBy = "product")
+    // List<OrderDetail> orderDetails;
+    //-----------------------------------------------//
+
     public String getName() {
         return name;
     }

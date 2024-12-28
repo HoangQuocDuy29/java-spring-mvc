@@ -1,11 +1,18 @@
 package vn.hoidanit.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity // Anotation để tạo table User
+@Table(name = "users")
 public class User {
 
     @Id // Set biến id là khoá
@@ -20,6 +27,15 @@ public class User {
 
     private String avatar;
 
+    // User many -> to one -> role
+    @ManyToOne
+    @JoinColumn(name = "role_id") // JoinColumn để Psring không tạo bảng giữa 2 khoá này.name="role_id" để nó liên kết đến Id bên Role.java
+    private Role role;
+
+    // User - one => many Order -----------------------------------------------------
+    @OneToMany(mappedBy = "user")
+    List<Order> orders;
+    //--------------------------------------------------------------------------------//
 
     public long getId() {
         return id;
