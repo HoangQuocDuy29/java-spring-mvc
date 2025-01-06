@@ -13,7 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo Id.Nhưng nếu OnetoOne thì không cần,thay vào đó dùng @MapId
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo Id.Nhưng nếu OnetoOne thì không cần,thay vào đó
+                                                        // dùng @MapId
 
     private long id;
 
@@ -27,66 +28,83 @@ public class Product {
     private String factory;
     private String target;
 
-
-    //----------------- Product->OrderDetail (order_id)
+    // ----------------- Product->OrderDetail (order_id)
     // @OneToMany(mappedBy = "product")
     // List<OrderDetail> orderDetails;
-    //-----------------------------------------------//
+    // -----------------------------------------------//
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
+
     public String getImage() {
         return image;
     }
+
     public void setImage(String image) {
         this.image = image;
     }
+
     public String getDetailDesc() {
         return detailDesc;
     }
+
     public void setDetailDesc(String detailDesc) {
         this.detailDesc = detailDesc;
     }
+
     public String getShortDesc() {
         return shortDesc;
     }
+
     public void setShortDesc(String shortDesc) {
         this.shortDesc = shortDesc;
     }
+
     public long getQuantity() {
         return quantity;
     }
+
     public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
+
     public long getSold() {
         return sold;
     }
+
     public void setSold(long sold) {
         this.sold = sold;
     }
+
     public String getFactory() {
         return factory;
     }
+
     public void setFactory(String factory) {
         this.factory = factory;
     }
+
     public String getTarget() {
         return target;
     }
+
     public void setTarget(String target) {
         this.target = target;
     }
+
     @Override
     public String toString() {
         return "Product [name=" + name + ", price=" + price + ", image=" + image + ", detailDesc=" + detailDesc
@@ -94,7 +112,4 @@ public class Product {
                 + ", target=" + target + "]";
     }
 
-
-    
-    
 }
