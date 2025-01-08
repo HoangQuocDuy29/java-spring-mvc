@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.validation.Valid;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
@@ -112,8 +116,15 @@ public class UserController {
     // Quay lại Table User khi tạo xong User mới
     @PostMapping("/admin/user/create") // POST
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User hoidanit,
-            @RequestParam("hoidanitFile") MultipartFile file) {
+            @ModelAttribute("newUser") @Valid User hoidanit,
+            BindingResult bindingResult,
+            @RequestParam("hoidanitFile") MultipartFile file ) {
+                //Validate Create User
+                List<FieldError> errors = bindingResult.getFieldErrors();
+                    for (FieldError error : errors ) 
+                    {
+                        System.out.println (">>>>" + error.getObjectName() + " - " + error.getDefaultMessage());
+                    }
         // Logic upload file
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
