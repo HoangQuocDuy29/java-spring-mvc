@@ -1,12 +1,9 @@
 package vn.hoidanit.laptopshop.domain;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -17,12 +14,10 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo Id.Nhưng nếu OnetoOne thì không cần,thay vào đó
-                                                        // dùng @MapId
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-     @NotNull
+    @NotNull
     @NotEmpty(message = "Tên sản phẩm không được để trống")
     private String name;
 
@@ -43,15 +38,18 @@ public class Product {
     @NotNull
     @Min(value = 1, message = "Số lượng cần lớn hơn hoặc bằng 1")
     private long quantity;
-    
+
     private long sold;
     private String factory;
     private String target;
 
-    // ----------------- Product->OrderDetail (order_id)
-    // @OneToMany(mappedBy = "product")
-    // List<OrderDetail> orderDetails;
-    // -----------------------------------------------//
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -127,9 +125,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [name=" + name + ", price=" + price + ", image=" + image + ", detailDesc=" + detailDesc
-                + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory=" + factory
-                + ", target=" + target + "]";
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDesc="
+                + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
+                + factory + ", target=" + target + "]";
     }
 
 }
