@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity // Anotation để tạo table User
 @Table(name = "users")
@@ -22,22 +24,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // cho Id tự tăng
     private long id;
 
+    // Validate Email
     @NotNull
-    @Email
+    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
     private String email;
 
+    // Validate Password
     @NotNull
-    @Min(2)
+    @Size(min = 2, message = "Password phải có tối thiểu 2 ký tự")
     private String password;
 
+    // Validate FullName
     @NotNull
-    @Min(2)
+    @Size(min = 3, message = "Fullname phải có tối thiểu 3 ký tự")
     private String fullName;
 
-    
+    // Validate Address
+    @NotNull
+    @Size(min = 5, message = "Address phải có tối thiểu 5 ký tự")
     private String address;
 
-
+    // Validate Phone
+    @NotNull
+    @Pattern(regexp = "^0\\d{9}$", message = "Phone phải có 10 chữ số và bắt đầu bằng 0")
     private String phone;
 
     private String avatar;
