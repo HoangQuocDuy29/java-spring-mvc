@@ -20,6 +20,7 @@ public class ProductService {
         return this.productRepository.save(pr);
     }
 
+    //Lấy ra toàn bộ các sản phẩm
     public List<Product> fetchProducts() {
         return this.productRepository.findAll();
     }
