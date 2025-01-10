@@ -121,7 +121,7 @@ public class UserController {
             @RequestParam("hoidanitFile") MultipartFile file ) {
                 //Validate Create User
                 List<FieldError> errors = newUserBindingResult.getFieldErrors();
-                    for (FieldError error : errors ) 
+                    for (FieldError error : errors )
                     {
                         System.out.println (">>>>" + error.getField() + " - " + error.getDefaultMessage());
                     }

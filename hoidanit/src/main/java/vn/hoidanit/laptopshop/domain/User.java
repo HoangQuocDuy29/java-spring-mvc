@@ -26,7 +26,7 @@ public class User {
 
     // Validate Email
     @NotNull
-    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
+    //@Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
     private String email;
 
     // Validate Password
@@ -40,13 +40,13 @@ public class User {
     private String fullName;
 
     // Validate Address
-    @NotNull
-    @Size(min = 5, message = "Address phải có tối thiểu 5 ký tự")
+    //@NotNull
+    //@Size(min = 5, message = "Address phải có tối thiểu 5 ký tự")
     private String address;
 
     // Validate Phone
-    @NotNull
-    @Pattern(regexp = "^0\\d{9}$", message = "Phone phải có 10 chữ số và bắt đầu bằng 0")
+    // @NotNull
+    // @Pattern(regexp = "^0\\d{9}$", message = "Phone phải có 10 chữ số và bắt đầu bằng 0")
     private String phone;
 
     private String avatar;
