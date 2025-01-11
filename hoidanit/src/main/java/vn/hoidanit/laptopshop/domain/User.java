@@ -15,6 +15,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity // Anotation để tạo table User
 @Table(name = "users")
@@ -26,12 +27,13 @@ public class User {
 
     // Validate Email
     @NotNull
-    //@Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
+    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
     private String email;
 
     // Validate Password
     @NotNull
     @Size(min = 2, message = "Password phải có tối thiểu 2 ký tự")
+    //@StrongPassword(message = "Pass word phải có 8 ký tự")
     private String password;
 
     // Validate FullName
