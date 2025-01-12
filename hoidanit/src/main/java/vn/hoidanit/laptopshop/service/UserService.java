@@ -62,4 +62,8 @@ public class UserService {
     public boolean checkEmailExist(String email){
         return this.userRepository.existsByEmail(email);
     }
+    //Lấy ra User phụ thuộc vào email chúng ta truyền vào
+    public User getUserByEmail(String email){
+        return this.userRepository.findByEmail(email);
+    }
 }
