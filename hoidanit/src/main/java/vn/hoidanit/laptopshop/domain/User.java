@@ -9,18 +9,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity // Anotation để tạo table User
 @Table(name = "users")
 public class User {
 
+    
     @Id // Set biến id là khoá
     @GeneratedValue(strategy = GenerationType.IDENTITY) // cho Id tự tăng
     private long id;
@@ -63,6 +62,8 @@ public class User {
     List<Order> orders;
     //--------------------------------------------------------------------------------//
 
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
     
 
     public long getId() {
@@ -118,6 +119,12 @@ public class User {
     }
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public Cart getCart() {
+        return cart;
+    }
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
     @Override
     public String toString() {
