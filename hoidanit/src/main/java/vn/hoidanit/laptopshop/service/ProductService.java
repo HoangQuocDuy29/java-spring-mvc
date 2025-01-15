@@ -63,7 +63,7 @@ public class ProductService {
                 cart = this.cartRepository.save(otherCart);
             }
             // lưu cart_detail
-            //tìm ppeoduct by id
+            //tìm product by id
             Optional<Product> producOptional = this.productRepository.findById(productId);
             if (producOptional.isPresent()) {
                 Product realProduct = producOptional.get();
@@ -71,7 +71,7 @@ public class ProductService {
                 CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, realProduct);
                 //
                 if (oldDetail == null) {
-                    CartDetail cd = new CartDetail();
+                CartDetail cd = new CartDetail();
                 cd.setCart(cart);
                 cd.setProduct(realProduct);
                 cd.setPrice(realProduct.getPrice());
@@ -79,7 +79,7 @@ public class ProductService {
                 this.cartDetailRepository.save(cd);
 
                 //update cart
-                int s = cart.getSum() + 1;
+                    int s = cart.getSum() + 1;
                     cart.setSum(s);
                     this.cartRepository.save(cart);
                     session.setAttribute("sum", s);
@@ -92,5 +92,8 @@ public class ProductService {
             
         }
         
+    }
+    public Cart fetchByUser(User user){
+        return this.cartRepository.findByUser(user);
     }
 }
