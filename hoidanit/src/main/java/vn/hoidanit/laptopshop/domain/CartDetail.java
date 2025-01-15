@@ -1,5 +1,6 @@
 package vn.hoidanit.laptopshop.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -69,5 +70,6 @@ public class CartDetail {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 
 }
