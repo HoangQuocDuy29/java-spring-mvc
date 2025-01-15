@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -31,7 +32,8 @@
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
                                             <h3>Table products</h3>
-                                            <a href="/admin/product/create" class="btn btn-primary">Create a product</a>
+                                            <a href="/admin/product/create" class="btn btn-primary">
+                                                Create a product</a>
                                         </div>
 
                                         <hr />
@@ -50,7 +52,10 @@
                                                     <tr>
                                                         <th>${product.id}</th>
                                                         <td>${product.name}</td>
-                                                        <td>${product.price}</td>
+                                                        <td>
+                                                            <fmt:formatNumber type="number"
+                                                            value="${product.price}"/> đ
+                                                        </td>
                                                         <td>${product.factory}</td>
                                                         <td>
                                                             <a href="/admin/product/${product.id}"
