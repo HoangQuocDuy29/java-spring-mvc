@@ -70,7 +70,7 @@ public class SecurityConfiguration {
             .dispatcherTypeMatchers(DispatcherType.FORWARD,
                 DispatcherType.INCLUDE) 
             .permitAll()
-            .requestMatchers("/","/login", "/client/**", "/css/**", "/product/**","/js/**",
+            .requestMatchers("/","/login", "/client/**", "/css/**","/register" ,"/product/**","/js/**",
                             "/images/**").permitAll()
             
             .requestMatchers("/admin/**").hasRole("ADMIN") // chỉ cho admin mới vào đc trang admin
