@@ -36,14 +36,15 @@ public class ProductController {
 
     @GetMapping("/admin/product")
     public String getProduct(Model model,
-    @RequestParam("page") int page  ) {
-        Pageable pageable = PageRequest.of(page - 1, 4); // phân trang
-        // page = 1 . limit = 10
-      
-        //database : offset + limit
+            @RequestParam("page") int page) {
+        Pageable pageable = PageRequest.of(page - 1, 3);
         Page<Product> prs = this.productService.fetchProducts(pageable);
-        List<Product> listProduct = prs.getContent(); // phân trang
-        model.addAttribute("products", prs);
+        List<Product> listProducts = prs.getContent();
+        model.addAttribute("products", listProducts);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", prs.getTotalPages());
+
         return "admin/product/show";
     }
 
@@ -71,6 +72,7 @@ public class ProductController {
 
         return "redirect:/admin/product";
     }
+
     @GetMapping("/admin/product/update/{id}")
     public String getUpdateProductPage(Model model, @PathVariable long id) {
         Optional<Product> currentProduct = this.productService.fetchProductById(id);

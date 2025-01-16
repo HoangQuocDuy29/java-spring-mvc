@@ -60,7 +60,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public void handleAddProductToCart(String email, long productId, HttpSession session,long quantity) {
+    public void handleAddProductToCart(String email, long productId, HttpSession session, long quantity) {
 
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
